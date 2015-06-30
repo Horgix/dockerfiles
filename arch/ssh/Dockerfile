@@ -1,4 +1,4 @@
-# ssh Dockerfile on Debian
+# ssh Dockerfile on Archlinux
 
 FROM base/archlinux:latest
 MAINTAINER Alexis Horgix Chotard <alexis.horgix.chotard@gmail.com>
