@@ -23,7 +23,7 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile" && \ echo "export VISIBLE=now" >> /etc/profile
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 
-# clone personnal configurations
+# Clone personnal configurations
 RUN git clone https://bitbucket.org/Horgix/configs.git /root/.configs \
   && cp -r /root/.configs/.bash \
   /root/.configs/.bashrc        \
