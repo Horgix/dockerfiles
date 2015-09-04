@@ -16,7 +16,6 @@ RUN pacman --noconfirm -S \
   wget \
   zsh \
   man \
-  expect \
   rxvt-unicode-terminfo
 
 # Allow to ssh in the container simply using root/root
