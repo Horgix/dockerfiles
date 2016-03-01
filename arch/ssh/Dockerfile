@@ -49,4 +49,6 @@ RUN sed -i 's/PR_CYAN/PR_RED/' /root/.zsh/prompt.zsh  \
 # Remove message of the day for a cleaner login
   && rm /etc/motd
 
+RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+
 CMD /usr/sbin/sshd -D
