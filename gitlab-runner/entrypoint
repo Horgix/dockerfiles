@@ -21,7 +21,12 @@ fi
 if ! grep 'token' ${DATA_DIR}/config.toml
 then
   echo "Runner is not configured... registering"
-  gitlab-runner register
+  if ! [ -z "$DOCKER_VOLUMES" ]
+  then
+    VOLUMES_ARG=`echo "$DOCKER_VOLUMES" | awk 'BEGIN { RS = "," }; { printf "--docker-volumes %s ", $0 }'`
+    unset DOCKER_VOLUMES
+  fi
+  gitlab-runner register $VOLUMES_ARG
 else
   echo "Runner is already configured"
 fi
