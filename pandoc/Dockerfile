@@ -1,7 +1,22 @@
-FROM haskell:latest
+FROM ubuntu:16.04
 
-ENV PANDOC_VERSION "1.19.2.1"
+RUN apt-get update \
+    && apt-get install -y \
+      texlive-latex-base \
+      texlive-xetex \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN cabal update && cabal install pandoc-${PANDOC_VERSION}
+# Ideas: latex-xcolor texlive-math-extra texlive-latex-extra
+# texlive-fonts-extra texlive-bibtex-extra fontconfig lmodern
+# fonts-font-awesome
 
-CMD ["/root/.cabal/bin/pandoc"]
+ENV PANDOC_VERSION "2.0.3"
+
+RUN apt-get update && apt-get install -y curl
+
+RUN curl https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux.tar.gz -sLo /pandoc-${PANDOC_VERSION}-linux.tar.gz \
+    && tar xvf pandoc-${PANDOC_VERSION}-linux.tar.gz \
+    && mv pandoc-${PANDOC_VERSION}/bin/pandoc /usr/bin/pandoc \
+    && rm -r pandoc-${PANDOC_VERSION}-linux.tar.gz pandoc-${PANDOC_VERSION}
+
+CMD ["/usr/bin/pandoc"]
