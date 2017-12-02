@@ -4,6 +4,7 @@ RUN apt-get update \
     && apt-get install -y \
       texlive-latex-base \
       texlive-xetex \
+      texlive-lang-french \
     && rm -rf /var/lib/apt/lists/*
 
 # Ideas: latex-xcolor texlive-math-extra texlive-latex-extra
